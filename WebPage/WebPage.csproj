@@ -22,6 +22,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\components\Agendamento.js" />
+    <None Remove="ClientApp\src\components\JavaScript.js" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\WebAPI_BNB\WebAPI_BNB.csproj" />
   </ItemGroup>
 
