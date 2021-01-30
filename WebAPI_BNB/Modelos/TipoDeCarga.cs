@@ -13,6 +13,6 @@ namespace WebAPI_BNB.Models
         public string Descricao { get; set; }
 
         //Quantidade de mercadoria
-        public int Quantidade { get; set; }
+        //public int Quantidade { get; set; }
     }
 }

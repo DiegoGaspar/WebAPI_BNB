@@ -10,6 +10,8 @@ namespace WebAPI_BNB.Models
     public class VagaEstoque : ClasseBase
     {
         //número da vaga de recebimento do estoque
-        public int NumeroVaga { get; set; }
+        public int? NumeroVaga { get; set; }
+        public string NomeVaga { get; set; }
+        public bool Ocupada { get; set; }
     }
 }
