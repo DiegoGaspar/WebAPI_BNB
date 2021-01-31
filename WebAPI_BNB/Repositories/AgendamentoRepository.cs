@@ -41,5 +41,6 @@ namespace WebAPI_BNB.Repositories
         {
             _context.Agendamentos.Update(categoria);
         }
+
     }
 }

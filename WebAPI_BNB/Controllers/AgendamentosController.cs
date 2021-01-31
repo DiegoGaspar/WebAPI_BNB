@@ -1,9 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using WebAPI_BNB.Configuracao;
 using WebAPI_BNB.Models;
 using WebAPI_BNB.Servicos.InterfaceServices;
 
@@ -28,6 +25,19 @@ namespace WebAPI_BNB.Controllers
             return agendamento;
         }
 
+        // POST: api/Agendamentos
+        [HttpPost]
+        public void PostTipoDeCarga(Agendamento agendamento)
+        {
+            agendamento.HorarioInicial = agendamento.Data.ToString("HH:mm:ss");
+            agendamento.HorarioDeTermino = agendamento.Data.AddHours(1).ToString("HH:mm:ss");
+            var a = _context.HorarioValido(agendamento.Data);
+
+            if (a)
+            {
+                System.Console.WriteLine("Teste");
+            }
+        }
 
     }
 }
