@@ -9,7 +9,7 @@ using WebAPI_BNB.Configuracao;
 using WebAPI_BNB.Repositories;
 using WebAPI_BNB.Repositories.Interfaces;
 using WebAPI_BNB.Servicos;
-using WebAPI_BNB.Servicos.InterfaceServices;
+using WebAPI_BNB.Servicos.InterfaceServicos;
 
 namespace WebAPI_BNB
 {

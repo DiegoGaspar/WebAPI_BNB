@@ -9,7 +9,7 @@ namespace WebAPI_BNB.Models
     /// <summary>
     /// Classse Veiculo - responsável pelas carretas
     /// </summary>
-    public class Veiculo : ClasseBase
+    public class Veiculo : Entidade
     {
         //Placa do veículo
         public string Placa { get; set; }

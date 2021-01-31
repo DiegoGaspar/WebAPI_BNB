@@ -7,7 +7,7 @@ namespace WebAPI_BNB.Models
     /// <summary>
     /// Classe base para herança do ID
     /// </summary>
-    public abstract class ClasseBase
+    public abstract class Entidade
     {
         //Id da classe
         public int Id { get; set; }

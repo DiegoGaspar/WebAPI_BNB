@@ -7,7 +7,7 @@ namespace WebAPI_BNB.Models
     /// <summary>
     /// Tipo de carga que o veículo transporta
     /// </summary>
-    public class TipoDeCarga : ClasseBase
+    public class TipoDeCarga : Entidade
     {
         //Descrição da carga
         public string Descricao { get; set; }

@@ -7,7 +7,7 @@ namespace WebAPI_BNB.Models
     /// <summary>
     /// Classse de vagas
     /// </summary>
-    public class VagaEstoque : ClasseBase
+    public class VagaEstoque : Entidade
     {
         //número da vaga de recebimento do estoque
         public int? NumeroVaga { get; set; }

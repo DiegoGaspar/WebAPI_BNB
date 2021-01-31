@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using WebAPI_BNB.Configuracao;
 using WebAPI_BNB.Models;
-using WebAPI_BNB.Servicos.InterfaceServices;
+using WebAPI_BNB.Servicos.InterfaceServicos;
 
 namespace WebAPI_BNB.Controllers
 {
@@ -10,32 +12,39 @@ namespace WebAPI_BNB.Controllers
     [ApiController]
     public class AgendamentosController : ControllerBase
     {
-        private readonly IAgendamentoService _context;
-
-        public AgendamentosController(IAgendamentoService context)
+        private readonly IAgendamentoService _agendamentoService;
+        public AgendamentosController(IAgendamentoService agendamento)
         {
-            _context = context;
+            _agendamentoService = agendamento;
         }
 
         // GET: api/Agendamentos
         [HttpGet]
         public async Task<IEnumerable<Agendamento>> GetAgendamentos()
         {
-            var agendamento = await _context.ListAsync();
+            var agendamento = await _agendamentoService.ObterTodos();
             return agendamento;
         }
 
         // POST: api/Agendamentos
         [HttpPost]
-        public void PostTipoDeCarga(Agendamento agendamento)
+        public async Task<ActionResult<Agendamento>> PostAgendamento(Agendamento agendamento)
         {
-            agendamento.HorarioInicial = agendamento.Data.ToString("HH:mm:ss");
-            agendamento.HorarioDeTermino = agendamento.Data.AddHours(1).ToString("HH:mm:ss");
-            var a = _context.HorarioValido(agendamento.Data);
+            agendamento.HorarioInicial = agendamento.Data;
+            agendamento.HorarioDeTermino = agendamento.Data.AddHours(1);
+            var resultHora = agendamento.HorarioDeTermino.AddMinutes(30);
+            var horarioValido = _agendamentoService.HorarioValido(agendamento.Data);
+            var horarioVago = _agendamentoService.HorarioVago(resultHora.TimeOfDay, agendamento.HorarioInicial.TimeOfDay);
 
-            if (a)
+            if (horarioValido && horarioVago)
             {
-                System.Console.WriteLine("Teste");
+                await _agendamentoService.Salvar(agendamento);
+               
+                return CreatedAtAction("GetAgendamentos", new { id = agendamento.Id }, agendamento);
+            }
+            else
+            {
+                return null;
             }
         }
 
